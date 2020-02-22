@@ -74,8 +74,8 @@ void handleRoot() {
   Serial.println(btn);
   if (btn=="PWON") send(PWON);
   if (btn=="PWOFF") send(PWOFF);
-  if (btn=="VOLUP") send(VOLUP);
-  if (btn=="VOLDOWN") send(VOLDOWN);
+  if (btn=="VOLUP") for(int i=0;i<4;i++) {send(VOLUP);delay(200);}
+  if (btn=="VOLDOWN") for(int i=0;i<4;i++) {send(VOLDOWN);delay(200);}
   if (btn=="DVD") send(DVD);
   if (btn=="TV") send(TV);
   if (btn=="VCR") send(VCR);
