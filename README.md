@@ -1,6 +1,8 @@
 # IRDenon
 Web Interface to remote control a Denon AVR with an ESP8266 and a infrared led or the Room to Room connection.
 
+![denon rear](images/web-interface.PNG)
+
 There are 4 ways to remote control older Denon AVR's (in my case Denon AVR 2308):
 1. by remote: mine is inside a tv console and there is no line of sight.
 2. by RS232: i managed to remote control it by connecting the COM Port of an old PC (which still has a COM port interface) and it worked perfectly. I just did not want another PC running. My first intention was to connect the ESP8266 Serial port to the Denon COM Port but I just could not get it working.
@@ -9,12 +11,13 @@ There are 4 ways to remote control older Denon AVR's (in my case Denon AVR 2308)
 
 ![denon rear](images/denon-rear.PNG)
 
-
 ## Installation
 - Copy credentials.h.sample to credentials.h and edit the SSID and password for your WiFi.
 - For controlling a IR led (3) connect the NPN transistor and IR led as described here:
 https://github.com/crankyoldgit/IRremoteESP8266/wiki#ir-sending
 - For controlling direct the "Room to Room" "REMOTE CONTROL": connect a 2 wire cable with a mono jack to ground and D2 on the ESP8266. You can also use a mono headphone cable or a stereo headphone cable (just connect the 2 channels together).
+
+![remote jack](images/IMG_20200223_090247_1.jpg)
 
 Upload the INO file to the ESP8266.
 
