@@ -7,7 +7,7 @@ There are 4 ways to remote control older Denon AVR's (in my case Denon AVR 2308)
 3. Infrared extender / blaster (you can get one for 10-15€) but what's the fun in that? This repo can be used for emitting IR signals through a IR led.
 4. Using the "Room to Room" "REMOTE CONTROL" or whatever it's called. Some AVR have the possibility to control other devices in other rooms for example. This is just a jack input for the same signals as for the IR led. This repo can also be used for emitting IR signals through the jack input without the need of a IR led. See your Denon manual
 
-![VFD](images/denon-rear.png)
+![denon rear](images/denon-rear.PNG)
 
 
 ## Installation
