@@ -7,6 +7,10 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WebServer.h>
 #include "credentials.h"
+#include <PubSubClient.h>
+const char* MQTT_BROKER = "192.168.178.200";
+WiFiClient espClient;
+PubSubClient client(espClient);
 
 IRsend irsend(4); // D2
 
@@ -83,6 +87,28 @@ void handleRoot() {
   if (btn=="NIGHT") send(NIGHT);
 }
 
+void mqtt(char* topic, byte* payload, unsigned int length) {
+    Serial.print("Received message [");
+    Serial.print(topic);
+    Serial.print("] ");
+    char msg[length+1];
+    for (int i = 0; i < length; i++) {
+        Serial.print((char)payload[i]);
+        msg[i] = (char)payload[i];
+    }
+    Serial.println();
+ 
+    msg[length] = '\0';
+    Serial.println(msg);
+ 
+    if(strcmp(msg,"on")==0){
+        send(PWON);
+    }
+    else if(strcmp(msg,"off")==0){
+        send(PWOFF);
+    }
+}
+
 void connectWifi() {
   WiFi.begin(STASSID,STAPSK);
   WiFi.mode(WIFI_STA);
@@ -94,6 +120,10 @@ void connectWifi() {
   Serial.println(STASSID);
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
+  client.setServer(MQTT_BROKER, 1883);
+  client.setCallback(mqtt);
+  Serial.print("mqtt broker: ");
+  Serial.println(MQTT_BROKER);
 }
 
 void setup() {
@@ -106,6 +136,24 @@ void setup() {
   server.begin();
 }
 
+void reconnect() {
+    while (!client.connected()) {
+        Serial.println("Reconnecting MQTT...");
+        if (!client.connect("ESP8266Client")) {
+            Serial.print("failed, rc=");
+            Serial.print(client.state());
+            Serial.println(" retrying in 5 seconds");
+            delay(5000);
+        }
+    }
+    client.subscribe("/home/denon");
+    Serial.println("MQTT Connected...");
+}
+
 void loop() {
   server.handleClient();
+    if (!client.connected()) {
+        reconnect();
+    }
+    client.loop();
 }
