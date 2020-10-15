@@ -1,0 +1,51 @@
+type: horizontal-stack
+cards:
+  - type: button
+    name: Vol Down
+    tap_action:
+      action: call-service
+      service: mqtt.publish
+      service_data:
+        payload: voldown
+        topic: /home/denon
+    icon: 'mdi:volume-minus'
+    show_icon: true
+    show_name: true
+    entity: switch.denon
+  - type: button
+    name: Vol Up
+    tap_action:
+      action: call-service
+      service: mqtt.publish
+      service_data:
+        payload: volup
+        topic: /home/denon
+    icon: 'mdi:volume-plus'
+    show_icon: true
+    show_name: true
+    entity: switch.denon
+  - type: button
+    name: Mute
+    tap_action:
+      action: call-service
+      service: mqtt.publish
+      service_data:
+        payload: mute
+        topic: /home/denon
+    icon: 'mdi:volume-mute'
+    show_icon: true
+    show_name: true
+    entity: switch.denon
+  - type: button
+    name: Night
+    tap_action:
+      action: call-service
+      service: mqtt.publish
+      service_data:
+        payload: night
+        topic: /home/denon
+    icon: 'mdi:weather-night'
+    show_icon: true
+    show_name: true
+    entity: switch.denon
+
