@@ -10,7 +10,7 @@ cards:
     name: Vol Up
     tap_action:
       action: call-service
-      service: denon_receiver_volume_up
+      service: esphome.denon_receiver_volume_up
     icon: 'mdi:volume-plus'
     entity: switch.denon
   - type: button
