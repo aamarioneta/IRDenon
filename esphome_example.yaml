@@ -1,6 +1,6 @@
 substitutions:
-  name: living_room_speakers
-  friendly_name: "Living Room Speakers"
+  name: denon_receiver
+  friendly_name: "Denon Receiver"
   carrier: 38kHz
 
 wifi:
